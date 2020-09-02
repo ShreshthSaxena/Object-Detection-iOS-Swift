@@ -33,7 +33,7 @@ class ObjectDetector: NSObject {
         // Setup Vision parts
         let error: NSError! = nil
         
-        guard let modelURL = Bundle.main.url(forResource: "golf", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "golf2_iou0.1_ct0.4", withExtension: "mlmodelc") else {
             return NSError(domain: "VisionObjectRecognitionViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "Model file is missing"])
         }
         do {
@@ -82,8 +82,6 @@ class ObjectDetector: NSObject {
             print(error)
         }
     }
-    
-    
     
     
     

@@ -36,13 +36,12 @@ class ViewController: UIViewController {
         AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
         self.objectDetector?.setupVision()
         self.setupAVCapture()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
-      }
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

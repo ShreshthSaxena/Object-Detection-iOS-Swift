@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6715D22024F5A02700B26544 /* golf2_iou10_ct70.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6715D21E24F5A02700B26544 /* golf2_iou10_ct70.mlmodel */; };
+		6715D22124F5A02700B26544 /* golf2_iou0.1_ct0.4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6715D21F24F5A02700B26544 /* golf2_iou0.1_ct0.4.mlmodel */; };
 		674B325A24F4DC2900ED684E /* golf.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 674B325924F4DC2900ED684E /* golf.mlmodel */; };
-		67F095D424F41F9F00085E7C /* 25k.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 67F095D324F41F9F00085E7C /* 25k.mlmodel */; };
 		67F095D624F4208B00085E7C /* last.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 67F095D524F4208B00085E7C /* last.mlmodel */; };
-		FA68723920AA028000D82F25 /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FA68723820AA028000D82F25 /* ObjectDetector.mlmodel */; };
 		FAB417F62099308400494E9C /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB417F52099308400494E9C /* ObjectDetector.swift */; };
 		FAD5009F1ED668B60074D713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5009E1ED668B60074D713 /* AppDelegate.swift */; };
 		FAD500A11ED668B60074D713 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD500A01ED668B60074D713 /* ViewController.swift */; };
@@ -20,12 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6715D21E24F5A02700B26544 /* golf2_iou10_ct70.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = golf2_iou10_ct70.mlmodel; sourceTree = "<group>"; };
+		6715D21F24F5A02700B26544 /* golf2_iou0.1_ct0.4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = golf2_iou0.1_ct0.4.mlmodel; sourceTree = "<group>"; };
 		674B325924F4DC2900ED684E /* golf.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = golf.mlmodel; path = ../../../../Downloads/golf.mlmodel; sourceTree = "<group>"; };
-		67F095D324F41F9F00085E7C /* 25k.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = 25k.mlmodel; sourceTree = "<group>"; };
 		67F095D524F4208B00085E7C /* last.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = last.mlmodel; sourceTree = "<group>"; };
 		7984D3D3A63BDFC4A07FEF8F /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		E3CB966204CD821C6969C2A3 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		FA68723820AA028000D82F25 /* ObjectDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectDetector.mlmodel; sourceTree = "<group>"; };
 		FAB417F52099308400494E9C /* ObjectDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 		FAD5009B1ED668B60074D713 /* demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD5009E1ED668B60074D713 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,9 +90,9 @@
 				FAD500A21ED668B60074D713 /* Main.storyboard */,
 				FAD500A51ED668B60074D713 /* Assets.xcassets */,
 				FAD500A71ED668B60074D713 /* LaunchScreen.storyboard */,
-				FA68723820AA028000D82F25 /* ObjectDetector.mlmodel */,
+				6715D21F24F5A02700B26544 /* golf2_iou0.1_ct0.4.mlmodel */,
+				6715D21E24F5A02700B26544 /* golf2_iou10_ct70.mlmodel */,
 				67F095D524F4208B00085E7C /* last.mlmodel */,
-				67F095D324F41F9F00085E7C /* 25k.mlmodel */,
 				674B325924F4DC2900ED684E /* golf.mlmodel */,
 				FAD500AA1ED668B60074D713 /* Info.plist */,
 			);
@@ -173,12 +173,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB417F62099308400494E9C /* ObjectDetector.swift in Sources */,
-				67F095D424F41F9F00085E7C /* 25k.mlmodel in Sources */,
 				67F095D624F4208B00085E7C /* last.mlmodel in Sources */,
 				FAD500A11ED668B60074D713 /* ViewController.swift in Sources */,
 				FAD5009F1ED668B60074D713 /* AppDelegate.swift in Sources */,
+				6715D22124F5A02700B26544 /* golf2_iou0.1_ct0.4.mlmodel in Sources */,
+				6715D22024F5A02700B26544 /* golf2_iou10_ct70.mlmodel in Sources */,
 				674B325A24F4DC2900ED684E /* golf.mlmodel in Sources */,
-				FA68723920AA028000D82F25 /* ObjectDetector.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
