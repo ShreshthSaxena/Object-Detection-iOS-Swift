@@ -5,4 +5,3 @@
 - Uses Primary(Back) Camera in Landscape mode by default
 - Compatible with iOS 14 and xcode 12
 
-![Alt](IMG_3261.jpg)
