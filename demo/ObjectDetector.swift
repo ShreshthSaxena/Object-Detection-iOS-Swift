@@ -1,6 +1,4 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
 Abstract:
 Contains the object recognition view controller for the Breakfast Finder.
 */
@@ -11,7 +9,7 @@ import Vision
 
 protocol ObjectDetectorDelegate {
     func updateLayerGeometry()
-    func createRoundedRectLayerWithBounds(_ bounds: CGRect, confidence: VNConfidence)
+    func createRoundedRectLayerWithBounds(_ bounds: CGRect, confidence: VNConfidence, textLayer: CATextLayer)
 //    func createbox(_ bounds: CGRect, color: UIColor)
     func removeOldLayer()
     
@@ -23,8 +21,6 @@ class ObjectDetector: NSObject {
     init(delegate:ObjectDetectorDelegate){
         self.delegate = delegate
     }
-//    private var detectionOverlay: CALayer! = nil
-    
     // Vision parts
     private var requests = [VNRequest]()
     
@@ -33,7 +29,7 @@ class ObjectDetector: NSObject {
         // Setup Vision parts
         let error: NSError! = nil
         
-        guard let modelURL = Bundle.main.url(forResource: "golf2_iou0.1_ct0.4", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "YOLOv3Int8LUT", withExtension: "mlmodelc") else {
             return NSError(domain: "VisionObjectRecognitionViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "Model file is missing"])
         }
         do {
@@ -60,15 +56,16 @@ class ObjectDetector: NSObject {
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
         delegate?.removeOldLayer()
         
-        for observation in results where observation is VNRecognizedObjectObservation {
+        for observation in results where observation is VNRecognizedObjectObservation  {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
                 continue
             }
-            // Select only the label with the highest confidence.
-//            let topLabelObservation = objectObservation.labels[0]
+//             Select only the label with the highest confidence.
+            let topLabelObservation = objectObservation.labels[0]
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
             
-            delegate?.createRoundedRectLayerWithBounds(objectBounds, confidence: objectObservation.confidence)
+            let textLayer = createTextSubLayerInBounds(objectBounds, identifier: topLabelObservation.identifier, confidence: topLabelObservation.confidence)
+            delegate?.createRoundedRectLayerWithBounds(objectBounds, confidence: objectObservation.confidence, textLayer: textLayer)
         }
         delegate?.updateLayerGeometry()
         CATransaction.commit()
@@ -83,24 +80,21 @@ class ObjectDetector: NSObject {
         }
     }
     
-    
-    
-//    func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
-//        let textLayer = CATextLayer()
-//        textLayer.name = "Object Label"
-//        let formattedString = NSMutableAttributedString(string: String(format: "\(identifier)\nConfidence:  %.2f", confidence))
-//        let largeFont = UIFont(name: "Helvetica", size: 24.0)!
-//        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: identifier.count))
-//        textLayer.string = formattedString
-//        textLayer.bounds = CGRect(x: 0, y: 0, width: bounds.size.height - 10, height: bounds.size.width - 10)
-//        textLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
-//        textLayer.shadowOpacity = 0.7
-//        textLayer.shadowOffset = CGSize(width: 2, height: 2)
-//        textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
-//        textLayer.contentsScale = 2.0 // retina rendering
-//        // rotate the layer into screen orientation and scale and mirror
-//        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: 1.0, y: -1.0))
-//        return textLayer
-//    }
-    
+    func createTextSubLayerInBounds(_ bounds: CGRect, identifier: String, confidence: VNConfidence) -> CATextLayer {
+        let textLayer = CATextLayer()
+        textLayer.name = "Object Label"
+        let formattedString = NSMutableAttributedString(string: String(format: "\(identifier)\nConfidence:  %.2f", confidence))
+        let largeFont = UIFont(name: "Helvetica", size: 24.0)!
+        formattedString.addAttributes([NSAttributedString.Key.font: largeFont], range: NSRange(location: 0, length: identifier.count))
+        textLayer.string = formattedString
+        textLayer.bounds = CGRect(x: 0, y: 0, width: bounds.size.height + 10, height: bounds.size.width + 10)
+        textLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
+        textLayer.shadowOpacity = 0.7
+        textLayer.shadowOffset = CGSize(width: 2, height: 2)
+        textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
+        textLayer.contentsScale = 2.0 // retina rendering
+        // rotate the layer into screen orientation and scale and mirror
+        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 1.0)).scaledBy(x: 1.0, y: -1.0))
+        return textLayer
+    }
 }

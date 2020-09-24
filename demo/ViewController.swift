@@ -1,6 +1,4 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
 Abstract:
 Contains the view controller for the Breakfast Finder.
 */
@@ -174,7 +172,7 @@ extension ViewController: ObjectDetectorDelegate
         
     }
     
-    func createRoundedRectLayerWithBounds(_ bounds: CGRect, confidence: VNConfidence){
+    func createRoundedRectLayerWithBounds(_ bounds: CGRect, confidence: VNConfidence, textLayer: CATextLayer){
         let shapeLayer = CALayer()
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -182,10 +180,7 @@ extension ViewController: ObjectDetectorDelegate
         shapeLayer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 0.2, 0.4])
         shapeLayer.cornerRadius = 7
         
-//        let textLayer = self.createTextSubLayerInBounds(objectBounds,
-//                                                        identifier: topLabelObservation.identifier,
-//                                                        confidence: topLabelObservation.confidence)
-//        shapeLayer.addSublayer(textLayer)
+        shapeLayer.addSublayer(textLayer)
         detectionOverlay.addSublayer(shapeLayer)
     }
 
